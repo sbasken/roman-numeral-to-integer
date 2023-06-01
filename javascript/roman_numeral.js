@@ -1,9 +1,33 @@
 function romanNumeral(string) {
-  // type your code here
+  const symbols = {
+    'I': 1,
+    'V': 5,
+    'X': 10,
+    'L': 50,
+    'C': 100,
+    'D': 500,
+    'M': 1000
+  };
+
+  let result = 0;
+
+  for (let i = 0; i < string.length; i++) {
+    let currentSymbolValue = symbols[string[i]];
+    let nextSymbolValue = symbols[string[i + 1]];
+
+    if (currentSymbolValue >= nextSymbolValue || nextSymbolValue === undefined) {
+      result += currentSymbolValue;
+    } else {
+      result -= currentSymbolValue;
+    }
+  }
+
+  return result;
 }
 
 if (require.main === module) {
   // add your own tests in here
+
   console.log("Expecting: 1");
   console.log(romanNumeral('I'));
 
